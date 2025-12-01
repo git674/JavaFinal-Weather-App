@@ -1,0 +1,6 @@
+public class OutfitCombos {
+
+}
+
+//basically makes the outfit combos based on the colors and the weather 
+//so if the weather is below this temp them get a jacket etc.

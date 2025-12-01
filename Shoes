@@ -1,0 +1,13 @@
+import java.util.Scanner;
+public class Shoes extends OutfitCombos {
+  Scanner scan = new Scanner(System.in);  
+public class Shoes(int shoe,String color){
+    shoe = scan.nextInt();
+    this.color = scan.nextLine();
+}
+
+
+}
+
+//whenerver the user clicks the plus button on the shoes
+//then there will be a shoe that is added to the shoe list and they will add the colors

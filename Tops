@@ -1,0 +1,12 @@
+import java.util.Scanner;
+public class Tops extends OutfitCombos {
+  Scanner scan = new Scanner(System.in);  
+public class Tops(int top,String color){
+    top = scan.nextInt();
+    this.color = scan.nextLine();
+}
+
+
+}
+
+//same thing as the shoes one 
