@@ -3,7 +3,7 @@ public class Jeans extends OutfitCombos {
   Scanner scan = new Scanner(System.in);  
 public class Jeans(int jeans,String color){
     jeans = scan.nextInt();
-    this.color = scan.nextLine();//the color would be like blue black etc.
+    this.color = scan.nextLine();//the color would be like blue black pinkgreen etc.
 }
 
 
