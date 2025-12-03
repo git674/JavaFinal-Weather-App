@@ -27,7 +27,7 @@ public class Interface extends Application{
             @Override
             public void handle(ActionEvent event) {
                 System.out.println("Button Clicked!");
-            }
+            }  
         });
 
         StackPane layout = new StackPane();
