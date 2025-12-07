@@ -5,6 +5,4 @@ public class Jeans(int jeans,String color){
     jeans = scan.nextInt();
     this.color = scan.nextLine();//the color would be like blue black etc.
 }
-
-
 }
