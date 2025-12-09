@@ -7,3 +7,4 @@ public class Runner {
         Main.main(args);
     }
 }
+//here we need methods that call the GUI and others to get it to open using javafx

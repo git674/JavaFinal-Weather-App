@@ -1,21 +1,11 @@
 package wardrobe;
 
-public class Tops {
-    private int quantity;
-    private String color;
-
-    public Tops(int quantity, String color) {
-        this.quantity = quantity;
-        this.color = color;
-    }
-
-    public int getQuantity() { return quantity; }
-    public void setQuantity(int q) { this.quantity = q; }
-    public String getColor() { return color; }
-    public void setColor(String c) { this.color = c; }
-
-    @Override
+public class Tops extends OutfitCombos {
     public String toString() {
         return quantity + "x " + color + " tops";
+    }
+
+    public String suggestOutfit() {
+        return "T-Shirt or Light Shirt";
     }
 }

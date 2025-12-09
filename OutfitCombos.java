@@ -17,6 +17,7 @@ public class OutfitCombos {
         this.type = type;
     }
 
+//getter methods
     public int getQuantity() {
         return quantity;
     }
@@ -29,23 +30,21 @@ public class OutfitCombos {
         return color;
     }
 
-    public void setColor(String color) {
-        this.color = color;
+public String getType() {
+        return type;
     }
 
-    public String getType() {
-        return type;
+//setter methods
+    public void setColor(String color) {
+        this.color = color;
     }
 
     public void setType(String type) {
         this.type = type;
     }
 
-    @Override
+//overriding/polymorphism
     public String toString() {
         return type + " (" + color + ") x" + quantity;
     }
 }
-
-//basically makes the outfit combos based on the colors and the weather 
-//so if the weather is below this temp them get a jacket etc.
