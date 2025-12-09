@@ -1,5 +1,3 @@
-package wardrobe;
-
 public class Jeans extends OutfitCombos {
     public Jeans() {
         super(0, "", "Jeans");

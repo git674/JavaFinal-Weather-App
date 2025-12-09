@@ -1,5 +1,3 @@
-package wardrobe;
-
 public class Tops {
     private int quantity;
     private String color;

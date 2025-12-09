@@ -1,4 +1,3 @@
-package wardrobe;
 
 public class Shoes {
     private int quantity;
