@@ -1,4 +1,4 @@
-
+package wardrobe;
 
 import javafx.application.Application;
 import javafx.geometry.Insets;
@@ -185,19 +185,36 @@ public class Main extends Application {
         wardrobeDisplay.setText(wardrobe.getAllItems());
     }
 
-    private void showOutfitRecommendation(int temp, String unit) {
-        String recommendation = generateOutfitRecommendation(temp, unit);
+    private void showOutfitRecommendation(String unit) {
+        WeatherData weather = readWeatherFromCSV(weather_data.csv, "Phoenix, AZ");
+        String recommendation = generateOutfitRecommendation(weather, unit);
         BorderPane s4 = (BorderPane) screen4.getRoot();
         TextArea outfitBox = (TextArea) s4.getCenter();
         outfitBox.setText(recommendation);
         window.setScene(screen4);
     }
 
-    private String generateOutfitRecommendation(int temp, String unit) {
+//main recommmendation logic
+    private String generateOutfitRecommendation(WeatherData weather, String unit) {
         StringBuilder outfit = new StringBuilder();
         outfit.append("OUTFIT RECOMMENDATION\n");
-        outfit.append("Temperature: ").append(temp).append("°").append(unit).append("\n\n");
 
+        int tempF;
+        if (weather != null) {
+            tempF = (int) weather.temp;
+            outfit.append("Date: ").append(weather.date).append("\n");
+            outfit.append("Temperature: ").append(weather.temp).append("°").append(unit).append("\n");
+            outfit.append("Conditions: ").append(weather.conditions).append("\n");
+            outfit.append("Wind Speed: ").append(weather.windspeed).append(" mph\n\n");
+        } else {
+            outfit.append("Weather data not available.\n");
+        }
+
+        //conve
+        if (unit.equals("C")) {
+            tempF = (int) (weather.temp * 9.0 / 5.0 + 32);
+        }
+        
         if (temp < 32 || (unit.equals("C") && temp < 0)) {
             outfit.append("It's COLD!\n");
             outfit.append("Recommended items:\n- Heavy jacket or coat\n- Long jeans\n- Warm shoes\n- Layers (thermal top)\n");
