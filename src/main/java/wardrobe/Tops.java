@@ -1,9 +1,6 @@
 package wardrobe;
 
-public class Tops {
-    private int quantity;
-    private String color;
-
+public class Tops extends OutfitCombos {
     public Tops(int quantity, String color) {
         this.quantity = quantity;
         this.color = color;
