@@ -210,7 +210,7 @@ public class Main extends Application {
             outfit.append("Weather data not available.\n");
         }
 
-        //conve
+        //convert to fahreheit if chosen
         if (unit.equals("C")) {
             tempF = (int) (weather.temp * 9.0 / 5.0 + 32);
         }
