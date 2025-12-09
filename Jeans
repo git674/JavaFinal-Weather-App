@@ -1,8 +1,16 @@
-import java.util.Scanner;
+package wardrobe;
+
 public class Jeans extends OutfitCombos {
-  Scanner scan = new Scanner(System.in);  
-public class Jeans(int jeans,String color){
-    jeans = scan.nextInt();
-    this.color = scan.nextLine();//the color would be like blue black etc.
-}
+    public Jeans() {
+        super(0, "", "Jeans");
+    }
+
+    public Jeans(int quantity, String color) {
+        super(quantity, color, "Jeans");
+    }
+
+    @Override
+    public String toString() {
+        return "Jeans (" + color + ") x" + quantity;
+    }
 }

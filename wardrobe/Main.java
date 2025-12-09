@@ -8,6 +8,11 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Main extends Application {
 
@@ -235,27 +240,42 @@ public class Main extends Application {
     }
 
     private String generateOutfitRecommendation(int temp, String unit) {
+        // Read weather data from CSV
+        WeatherData weather = readWeatherFromCSV("weather_data.csv", "Phoenix, AZ");
+        
         StringBuilder outfit = new StringBuilder();
         outfit.append("OUTFIT RECOMMENDATION\n");
-        outfit.append("Temperature: ").append(temp).append("°").append(unit).append("\n\n");
+        outfit.append("Temperature: ").append(temp).append("°").append(unit).append("\n");
+        if (weather != null) {
+            outfit.append("Conditions: ").append(weather.conditions).append("\n");
+            outfit.append("Wind Speed: ").append(weather.windspeed).append(" mph\n\n");
+        } else {
+            outfit.append("Conditions: Clear\n");
+            outfit.append("Wind Speed: 5.5 mph\n\n");
+        }
 
-        // Simple logic based on temperature
-        if (temp < 32 || (unit.equals("C") && temp < 0)) {
+        // Convert to Fahrenheit for consistent comparison
+        int tempF = temp;
+        if (unit.equals("C")) {
+            tempF = (int)(temp * 9.0 / 5.0 + 32);
+        }
+
+        if (tempF < 32) {
             outfit.append("It's COLD!\n");
             outfit.append("Recommended items:\n");
             outfit.append("- Heavy jacket or coat\n");
             outfit.append("- Long jeans\n");
             outfit.append("- Warm shoes\n");
             outfit.append("- Layers (thermal top)\n");
-        } else if (temp < 60 || (unit.equals("C") && temp < 15)) {
+        } else if (tempF < 60) {
             outfit.append("It's COOL.\n");
             outfit.append("Recommended items:\n");
             outfit.append("- Light jacket or sweater\n");
             outfit.append("- Jeans or long pants\n");
             outfit.append("- Comfortable shoes\n");
             outfit.append("- Long-sleeve top\n");
-        } else if (temp < 75 || (unit.equals("C") && temp < 24)) {
-            outfit.append("It's MILD.\n");
+        } else if (tempF < 75) {
+            outfit.append("It's COMFORTABLE.\n");
             outfit.append("Recommended items:\n");
             outfit.append("- T-shirt or light top\n");
             outfit.append("- Jeans or casual pants\n");
@@ -274,6 +294,57 @@ public class Main extends Application {
         outfit.append(wardrobe.getAllItems());
 
         return outfit.toString();
+    }
+
+    // Inner class to hold weather data
+    private static class WeatherData {
+        String date;
+        double temp;
+        String conditions;
+        double windspeed;
+
+        WeatherData(String date, double temp, String conditions, double windspeed) {
+            this.date = date;
+            this.temp = temp;
+            this.conditions = conditions;
+            this.windspeed = windspeed;
+        }
+    }
+
+    // Method to read weather data from CSV
+    private WeatherData readWeatherFromCSV(String filePath, String targetCity) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            LocalDate today = LocalDate.now();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            String todayStr = today.format(formatter);
+
+            // Skip header line
+            reader.readLine();
+
+            // Read each data line
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(",");
+                
+                if (parts.length >= 5) {
+                    String date = parts[0].trim();
+                    String city = parts[1].trim().replaceAll("\"", "");
+                    String tempStr = parts[2].trim();
+                    String conditions = parts[3].trim().replaceAll("\"", "");
+                    String windStr = parts[5].trim();
+
+                    // Match today's date and target city
+                    if (date.equals(todayStr) && city.equalsIgnoreCase(targetCity)) {
+                        double temp = Double.parseDouble(tempStr);
+                        double windspeed = Double.parseDouble(windStr);
+                        return new WeatherData(date, temp, conditions, windspeed);
+                    }
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("Error reading CSV file: " + e.getMessage());
+        }
+        return null;
     }
 
     public static void main(String[] args) {

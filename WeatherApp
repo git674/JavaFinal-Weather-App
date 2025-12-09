@@ -1,3 +1,4 @@
+//reads the csv and gets the temperature for a specific city
 import java.io.BufferedReader; //reads text from CSV
 import java.io.FileReader; //opens CSV for reading
 import java.io.IOException; //handles IO exceptions
@@ -10,12 +11,16 @@ public class WeatherApp {
         
         double temp = readWeatherFromCSV(csvFile, city);
         
-        if (temp != -1) { //city exists
-            System.out.println("Temperature in " + city + ": " + temp + "°F");
+        System.out.println("Temperature in " + city + ": " + temp + "°C");
+
+        if(temp<10){
+            System.out.println("It's cold! Wear a jacket.");
+        } else if(temp>=10 && temp<20){
+            System.out.println("It's cool! A sweater should be fine.");
         } else {
-            System.out.println("City is not found.");
+            System.out.println("It's warm! A t-shirt and jeans are perfect.");
         }
-    }
+
 
     // Reads CSV file and gets the temperature for a specific city
     public static double readWeatherFromCSV(String filePath, String targetCity) {
