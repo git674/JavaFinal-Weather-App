@@ -1,12 +1,17 @@
-import java.util.Scanner;
+package wardrobe;
+
 public class Tops extends OutfitCombos {
-  Scanner scan = new Scanner(System.in);  
-public class Tops(int top,String color){
-    top = scan.nextInt();
-    this.color = scan.nextLine();
+    public Tops() {
+        super(0, "", "Tops");
+    }
+
+    public Tops(int quantity, String color) {
+        super(quantity, color, "Tops");
+    }
+
+    @Override
+    public String toString() {
+        return "Tops (" + color + ") x" + quantity;
+    }
 }
 
-
-}
-
-//same thing as the shoes one 
