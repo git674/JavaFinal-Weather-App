@@ -11,7 +11,7 @@ public class Tops extends OutfitCombos {
 
     @Override
     public String toString() {
-        return "Tops (" + color + ") x" + quantity;
+        return "Tops (" + getColor() + ") x" + quantity;
     }
 }
 

@@ -1,6 +1,3 @@
-//import java.util.*;
-import java.util.*;
-
 public class Wardrobe {
     private List<Shoes> shoes;
     private List<Jeans> jeans;
@@ -12,8 +9,6 @@ public class Wardrobe {
         tops = new ArrayList<>();
     package wardrobe;
     }
-
-    import java.util.*;
 
     public class Wardrobe {
         // Check if we already have this color
