@@ -7,7 +7,6 @@ public class Wardrobe {
         shoes = new ArrayList<>();
         jeans = new ArrayList<>();
         tops = new ArrayList<>();
-    package wardrobe;
     }
 
     public class Wardrobe {

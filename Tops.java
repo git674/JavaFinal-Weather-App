@@ -9,9 +9,6 @@ public class Tops extends OutfitCombos {
         super(quantity, color, "Tops");
     }
 
-    @Override
-    public String toString() {
-        return "Tops (" + getColor() + ") x" + quantity;
-    }
+    
 }
 
